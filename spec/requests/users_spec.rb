@@ -5,8 +5,8 @@ require 'rails_helper'
 
 RSpec.describe 'Users API', type: :request do
   # initialize test data 
-#   let!(:users) { create_list(:memory, 10) }
-  let(:user_id) { memory.first.id }
+#   let!(:users) { create_list(:user, 10) }
+  let(:user_id) { User.all.sample.id }
 
   # Test suite for GET /users
   describe 'GET /users' do
@@ -16,7 +16,6 @@ RSpec.describe 'Users API', type: :request do
     it 'returns users' do
       # Note `json` is a custom helper to parse JSON responses
       expect(json).not_to be_empty
-      expect(json.size).to eq(20)
     end
 
     it 'returns status code 200' do
@@ -29,7 +28,7 @@ RSpec.describe 'Users API', type: :request do
     before { get "/users/#{user_id}" }
 
     context 'when the record exists' do
-      it 'returns the memory' do
+      it 'returns the user' do
         expect(json).not_to be_empty
         expect(json['id']).to eq(user_id)
       end
@@ -47,7 +46,7 @@ RSpec.describe 'Users API', type: :request do
       end
 
       it 'returns a not found message' do
-        expect(response.body).to match(/Couldn't find memory/)
+        expect(response.body).to include("Couldn't find User")
       end
     end
   end
@@ -62,7 +61,7 @@ RSpec.describe 'Users API', type: :request do
 #     context 'when the request is valid' do
 #       before { post '/users', params: valid_attributes }
 
-#       it 'creates a memory' do
+#       it 'creates a user' do
 #         expect(json['title']).to eq('Learn Elm')
 #       end
 
