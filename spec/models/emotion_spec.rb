@@ -2,5 +2,5 @@ require 'rails_helper'
 
 RSpec.describe Emotion, type: :model do
   it { should belong_to(:memory) }
-  it { should validate_presence_of(:feeling, :intensity) }
+  it { should validate_presence_of(:feeling, :intensity, :stress_level) }
 end

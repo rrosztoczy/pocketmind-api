@@ -1,4 +1,7 @@
 class Thought < ApplicationRecord
-    belongs_to :memory
-    validates_presence_of :thought
+    has_many :thought_memories
+    validates_presence_of :thought_category
+
+
+    # Unclear if I actually need this table at all...
 end

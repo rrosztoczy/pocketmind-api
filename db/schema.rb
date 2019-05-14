@@ -10,53 +10,70 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_14_140856) do
+ActiveRecord::Schema.define(version: 2019_05_14_185108) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "activities", force: :cascade do |t|
     t.string "activity_category"
-    t.string "activity_name"
-    t.boolean "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "activity_memories", force: :cascade do |t|
+    t.text "activity_name"
+    t.text "activity_status"
+    t.datetime "activity_start_time"
+    t.datetime "activity_end_time"
+    t.text "activity_source"
+    t.bigint "activity_id"
+    t.bigint "memory_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["activity_id"], name: "index_activity_memories_on_activity_id"
+    t.index ["memory_id"], name: "index_activity_memories_on_memory_id"
+  end
+
+  create_table "emotion_memories", force: :cascade do |t|
+    t.integer "intensity"
+    t.integer "stress_level"
+    t.bigint "emotion_id"
+    t.bigint "memory_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["emotion_id"], name: "index_emotion_memories_on_emotion_id"
+    t.index ["memory_id"], name: "index_emotion_memories_on_memory_id"
   end
 
   create_table "emotions", force: :cascade do |t|
     t.text "feeling"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "intensity"
     t.integer "valence"
   end
 
   create_table "memories", force: :cascade do |t|
     t.bigint "user_id"
-    t.bigint "emotion_id"
-    t.bigint "thought_id"
-    t.bigint "physical_id"
-    t.bigint "activity_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["activity_id"], name: "index_memories_on_activity_id"
-    t.index ["emotion_id"], name: "index_memories_on_emotion_id"
-    t.index ["physical_id"], name: "index_memories_on_physical_id"
-    t.index ["thought_id"], name: "index_memories_on_thought_id"
     t.index ["user_id"], name: "index_memories_on_user_id"
   end
 
-  create_table "physicals", force: :cascade do |t|
-    t.integer "stress_level"
-    t.string "physical_activity"
+  create_table "thought_memories", force: :cascade do |t|
+    t.text "thought_content"
+    t.bigint "thought_id"
+    t.bigint "memory_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "thought_type"
+    t.text "time_orientation"
+    t.index ["memory_id"], name: "index_thought_memories_on_memory_id"
+    t.index ["thought_id"], name: "index_thought_memories_on_thought_id"
   end
 
   create_table "thoughts", force: :cascade do |t|
     t.string "thought_category"
-    t.string "thought"
-    t.string "bias"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -71,9 +88,11 @@ ActiveRecord::Schema.define(version: 2019_05_14_140856) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "memories", "activities"
-  add_foreign_key "memories", "emotions"
-  add_foreign_key "memories", "physicals"
-  add_foreign_key "memories", "thoughts"
+  add_foreign_key "activity_memories", "activities"
+  add_foreign_key "activity_memories", "memories"
+  add_foreign_key "emotion_memories", "emotions"
+  add_foreign_key "emotion_memories", "memories"
   add_foreign_key "memories", "users"
+  add_foreign_key "thought_memories", "memories"
+  add_foreign_key "thought_memories", "thoughts"
 end

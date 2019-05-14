@@ -1,4 +1,4 @@
 class Emotion < ApplicationRecord
-    belongs_to :memory
-    validates_presence_of :feeling, :intensity
+    has_many emotion_memories
+    validates_presence_of :feeling, :intensity, :stress_level
 end
