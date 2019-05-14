@@ -34,7 +34,7 @@ class ActivitiesController < ApplicationController
   
     def activity_params
       # whitelist params
-      params.permit(:activity_category, :activity_name, :progress)
+      params.permit(:activity_category, :activity_name, :status)
     end
   
     def set_activity

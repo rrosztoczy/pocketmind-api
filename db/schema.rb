@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_14_003354) do
+ActiveRecord::Schema.define(version: 2019_05_14_140856) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,22 +18,17 @@ ActiveRecord::Schema.define(version: 2019_05_14_003354) do
   create_table "activities", force: :cascade do |t|
     t.string "activity_category"
     t.string "activity_name"
-    t.boolean "progress"
+    t.boolean "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "emotions", force: :cascade do |t|
     t.text "feeling"
-    t.text "mood"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "intensity"
     t.integer "valence"
-    t.integer "mood_intensity"
-    t.integer "mood_valence"
-    t.text "secondary_feeling"
-    t.integer "secondary_feeling_intensity"
   end
 
   create_table "memories", force: :cascade do |t|
@@ -59,7 +54,7 @@ ActiveRecord::Schema.define(version: 2019_05_14_003354) do
   end
 
   create_table "thoughts", force: :cascade do |t|
-    t.string "category"
+    t.string "thought_category"
     t.string "thought"
     t.string "bias"
     t.datetime "created_at", null: false

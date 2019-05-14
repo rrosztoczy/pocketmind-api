@@ -34,7 +34,7 @@ class EmotionsController < ApplicationController
   
     def emotion_params
       # whitelist params
-      params.permit(:feeling, :mood)
+      params.permit(:feeling, :intensity, :valence)
     end
   
     def set_emotion

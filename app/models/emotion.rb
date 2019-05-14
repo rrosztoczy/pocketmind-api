@@ -1,4 +1,4 @@
 class Emotion < ApplicationRecord
-    has_many :memories, dependent: :nullify
-    validates_presence_of :feeling
+    belongs_to :memory
+    validates_presence_of :feeling, :intensity
 end

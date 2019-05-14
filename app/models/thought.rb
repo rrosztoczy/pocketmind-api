@@ -1,4 +1,4 @@
 class Thought < ApplicationRecord
-    has_many :memories, dependent: :nullify
-    validates_presence_of :category, :thought
+    belongs_to :memory
+    validates_presence_of :thought
 end
