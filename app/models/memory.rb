@@ -1,7 +1,6 @@
 class Memory < ApplicationRecord
   belongs_to :user
-  belongs_to :emotion
-  belongs_to :thought
-  belongs_to :physical
-  belongs_to :activity
+  has_many :emotion_memories, dependent: :destroy
+  has_many :thought_memories, dependent: :destroy
+  has_many :activity_memories, dependent: :destroy
 end

@@ -34,7 +34,7 @@ class ThoughtsController < ApplicationController
   
     def thought_params
       # whitelist params
-      params.permit(:category, :thought, :bias)
+      params.permit(:thought_category, :thought, :bias)
     end
   
     def set_thought

@@ -1,4 +1,7 @@
 class Thought < ApplicationRecord
-    has_many :memories, dependent: :nullify
-    validates_presence_of :category, :thought
+    has_many :thought_memories
+    validates_presence_of :thought_category
+
+
+    # Unclear if I actually need this table at all...
 end

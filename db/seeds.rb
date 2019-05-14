@@ -26,147 +26,42 @@ User.create(email: 'Vicky@test.com', username: 'vicky', first_name: 'Vicky', las
 User.create(email: 'Ian@test.com', username: 'ian', first_name: 'Ian', last_name: 'H', password: 'password')
 
 # Emotions
-feeling = Faker::Number.number(10)
-mood = Faker::Number.number(10)
-primary_feeling_options = ['happy', 'surprised', 'angry', 'disgusted', 'afraid', 'sad']
-secondary_feeling_options = ['anxious', 'calm', 'worried', 'annoyed', 'irritated', 'helpless', 'frusturated', 'guilty', 'ashamed', 'shocked', 'tense', 'delighted', 'elated', 'joyful', 'affectionate', 'loving', 'serene'] 
+# For feelings... will organize by intensity wheel but assign valence and activation based on affect circumplex
+# Pull activation from charts
+# Pull valence from charts
+primary_emotions = ['joy', 'trust', 'fear', 'surprise', 'sadness', 'disgust', 'anger', 'anticipation']
+strong_emotions = ['ecstasy', 'admiration', 'terror', 'amazement', 'grief', 'loathing', 'rage', 'vigilance'] 
+mild_emotions = ['serenity', 'acceptance', 'apprehension', 'distraction', 'pensiveness', 'bordeom', 'annoyance', 'interest'] 
+combinatory_emotions = ['love', 'submission', 'awe', 'disapproval', 'remorse', 'contempt', 'aggressiveness', 'optimism']
+emotions = primary_emotions + strong_emotions + mild_emotions + combinatory_emotions
 
-# Thoughts
-
-# TODO: Can see place for social now... social activities!
+#Thoughts
+time_orientation = ['Future', 'Past', 'Present']
+thought_type = ['Insightful', 'Experiential', 'Automatic']
+# There may be no need for thought as stand alone... though_category = []?
 
 # Activities
-activity_category = ['Personal','Work', 'Learn', 'Teach', 'Hobby', 'Other']
+activity_category = ['Entertainment','Work', 'Physical', 'Other']
 work_activities = ['Develop', 'Plan', 'Meeting', 'Design', 'Test', 'QA', 'Research']
-personal_activities = ['Clean', 'Cook', 'Shop', 'Eat', 'Drink', 'Play music', 'Listen to music', 'Read', 'Meditate']
-all_activities = work_activities + personal_activities
+entertainment_activities = ['Clean', 'Cook', 'Shop', 'Eat', 'Drink', 'Play music', 'Listen to music', 'Read', 'Meditate']
+physical_activities = ['Lift weights', 'Walk', 'Run', 'Yoga', 'Swim', 'Dance', 'Sport - other', 'Other']
+# other_activities = []
+all_activities = work_activities + personal_activities + physical_activities
 
 # Physicals
 stress_level = Faker::Number.number(10)
-physical_activities = ['Lift weights', 'Walk', 'Run', 'Yoga', 'Swim', 'Dance', 'Sport - other', 'Other']
 
-#Thoughts
-thought_categories = ['Worry', 'Gratitude', 'Memory', 'Future', 'Hope']
+
+
 # TODO: Comment out the create test ryan line after the first seed, see once 
 # TODO: Start to collect real data asap and use that
+# TODO: Have each emotion thought and activity use the last memory created id
 User.create(email: 'Ryan@test.com', username: 'ryan', first_name: 'Ryan', last_name: 'R', password: 'password')
-# Memories
-Emotion.create(feeling: primary_feeling_options.sample, secondary_feeling: secondary_feeling_options.sample, intensity: Faker::Number.between(from = 1.00, to = 10.00).to_i)
-Thought.create(category: thought_categories.sample, thought: Faker::Lorem.paragraph(sentence_count = 3, supplemental = false, random_sentences_to_add = 0))
-Activity.create(activity_category: activity_category.sample, activity_name: all_activities.sample, progress: true)
-Physical.create(stress_level: Faker::Number.between(from = 1.00, to = 10.00).to_i, physical_activity: physical_activities.sample)
-Memory.create(user_id: User.all.sample.id, emotion_id: Emotion.last.id, thought_id: Thought.last.id, physical_id: Physical.last.id, activity_id: Activity.last.id)
+# TOOD: Should memories have a category?
 
-Emotion.create(feeling: primary_feeling_options.sample, secondary_feeling: secondary_feeling_options.sample, intensity: Faker::Number.between(from = 1.00, to = 10.00).to_i)
-Thought.create(category: thought_categories.sample, thought: Faker::Lorem.paragraph(sentence_count = 3, supplemental = false, random_sentences_to_add = 0))
-Activity.create(activity_category: activity_category.sample, activity_name: all_activities.sample, progress: true)
-Physical.create(stress_level: Faker::Number.between(from = 1.00, to = 10.00).to_i, physical_activity: physical_activities.sample)
-Memory.create(user_id: User.all.sample.id, emotion_id: Emotion.last.id, thought_id: Thought.last.id, physical_id: Physical.last.id, activity_id: Activity.last.id)
 
-Emotion.create(feeling: primary_feeling_options.sample, secondary_feeling: secondary_feeling_options.sample, intensity: Faker::Number.between(from = 1.00, to = 10.00).to_i)
-Thought.create(category: thought_categories.sample, thought: Faker::Lorem.paragraph(sentence_count = 3, supplemental = false, random_sentences_to_add = 0))
-Activity.create(activity_category: activity_category.sample, activity_name: all_activities.sample, progress: true)
-Physical.create(stress_level: Faker::Number.between(from = 1.00, to = 10.00).to_i, physical_activity: physical_activities.sample)
-Memory.create(user_id: User.all.sample.id, emotion_id: Emotion.last.id, thought_id: Thought.last.id, physical_id: Physical.last.id, activity_id: Activity.last.id)
+Memory.create()
+Emotion.create(feeling: primary_feeling_options.sample, intensity: Faker::Number.between(from = 1.00, to = 10.00).to_i, valence: Faker::Number.between(from = -5.00, to = -5.00).to_i, stress_level: Faker::Number.between(from = -5.00, to = -5.00).to_i)
+Thought.create(thought_category: thought_categories.sample, thought: Faker::Lorem.paragraph(sentence_count = 3, supplemental = false, random_sentences_to_add = 0))
+Activity.create(activity_category: activity_category.sample, activity_name: all_activities.sample, status: 'In Progress')
 
-Emotion.create(feeling: primary_feeling_options.sample, secondary_feeling: secondary_feeling_options.sample, intensity: Faker::Number.between(from = 1.00, to = 10.00).to_i)
-Thought.create(category: thought_categories.sample, thought: Faker::Lorem.paragraph(sentence_count = 3, supplemental = false, random_sentences_to_add = 0))
-Activity.create(activity_category: activity_category.sample, activity_name: all_activities.sample, progress: true)
-Physical.create(stress_level: Faker::Number.between(from = 1.00, to = 10.00).to_i, physical_activity: physical_activities.sample)
-Memory.create(user_id: User.all.sample.id, emotion_id: Emotion.last.id, thought_id: Thought.last.id, physical_id: Physical.last.id, activity_id: Activity.last.id)
-
-Emotion.create(feeling: primary_feeling_options.sample, secondary_feeling: secondary_feeling_options.sample, intensity: Faker::Number.between(from = 1.00, to = 10.00).to_i)
-Thought.create(category: thought_categories.sample, thought: Faker::Lorem.paragraph(sentence_count = 3, supplemental = false, random_sentences_to_add = 0))
-Activity.create(activity_category: activity_category.sample, activity_name: all_activities.sample, progress: true)
-Physical.create(stress_level: Faker::Number.between(from = 1.00, to = 10.00).to_i, physical_activity: physical_activities.sample)
-Memory.create(user_id: User.all.sample.id, emotion_id: Emotion.last.id, thought_id: Thought.last.id, physical_id: Physical.last.id, activity_id: Activity.last.id)
-
-Emotion.create(feeling: primary_feeling_options.sample, secondary_feeling: secondary_feeling_options.sample, intensity: Faker::Number.between(from = 1.00, to = 10.00).to_i)
-Thought.create(category: thought_categories.sample, thought: Faker::Lorem.paragraph(sentence_count = 3, supplemental = false, random_sentences_to_add = 0))
-Activity.create(activity_category: activity_category.sample, activity_name: all_activities.sample, progress: true)
-Physical.create(stress_level: Faker::Number.between(from = 1.00, to = 10.00).to_i, physical_activity: physical_activities.sample)
-Memory.create(user_id: User.all.sample.id, emotion_id: Emotion.last.id, thought_id: Thought.last.id, physical_id: Physical.last.id, activity_id: Activity.last.id)
-
-Emotion.create(feeling: primary_feeling_options.sample, secondary_feeling: secondary_feeling_options.sample, intensity: Faker::Number.between(from = 1.00, to = 10.00).to_i)
-Thought.create(category: thought_categories.sample, thought: Faker::Lorem.paragraph(sentence_count = 3, supplemental = false, random_sentences_to_add = 0))
-Activity.create(activity_category: activity_category.sample, activity_name: all_activities.sample, progress: true)
-Physical.create(stress_level: Faker::Number.between(from = 1.00, to = 10.00).to_i, physical_activity: physical_activities.sample)
-Memory.create(user_id: User.all.sample.id, emotion_id: Emotion.last.id, thought_id: Thought.last.id, physical_id: Physical.last.id, activity_id: Activity.last.id)
-
-Emotion.create(feeling: primary_feeling_options.sample, secondary_feeling: secondary_feeling_options.sample, intensity: Faker::Number.between(from = 1.00, to = 10.00).to_i)
-Thought.create(category: thought_categories.sample, thought: Faker::Lorem.paragraph(sentence_count = 3, supplemental = false, random_sentences_to_add = 0))
-Activity.create(activity_category: activity_category.sample, activity_name: all_activities.sample, progress: false)
-Physical.create(stress_level: Faker::Number.between(from = 1.00, to = 10.00).to_i, physical_activity: physical_activities.sample)
-Memory.create(user_id: User.all.sample.id, emotion_id: Emotion.last.id, thought_id: Thought.last.id, physical_id: Physical.last.id, activity_id: Activity.last.id)
-
-Emotion.create(feeling: primary_feeling_options.sample, secondary_feeling: secondary_feeling_options.sample, intensity: Faker::Number.between(from = 1.00, to = 10.00).to_i)
-Thought.create(category: thought_categories.sample, thought: Faker::Lorem.paragraph(sentence_count = 3, supplemental = false, random_sentences_to_add = 0))
-Activity.create(activity_category: activity_category.sample, activity_name: all_activities.sample, progress: true)
-Physical.create(stress_level: Faker::Number.between(from = 1.00, to = 10.00).to_i, physical_activity: physical_activities.sample)
-Memory.create(user_id: User.all.sample.id, emotion_id: Emotion.last.id, thought_id: Thought.last.id, physical_id: Physical.last.id, activity_id: Activity.last.id)
-
-Emotion.create(feeling: primary_feeling_options.sample, secondary_feeling: secondary_feeling_options.sample, intensity: Faker::Number.between(from = 1.00, to = 10.00).to_i)
-Thought.create(category: thought_categories.sample, thought: Faker::Lorem.paragraph(sentence_count = 3, supplemental = false, random_sentences_to_add = 0))
-Activity.create(activity_category: activity_category.sample, activity_name: all_activities.sample, progress: true)
-Physical.create(stress_level: Faker::Number.between(from = 1.00, to = 10.00).to_i, physical_activity: physical_activities.sample)
-Memory.create(user_id: User.all.sample.id, emotion_id: Emotion.last.id, thought_id: Thought.last.id, physical_id: Physical.last.id, activity_id: Activity.last.id)
-
-Emotion.create(feeling: primary_feeling_options.sample, secondary_feeling: secondary_feeling_options.sample, intensity: Faker::Number.between(from = 1.00, to = 10.00).to_i)
-Thought.create(category: thought_categories.sample, thought: Faker::Lorem.paragraph(sentence_count = 3, supplemental = false, random_sentences_to_add = 0))
-Activity.create(activity_category: activity_category.sample, activity_name: all_activities.sample, progress: true)
-Physical.create(stress_level: Faker::Number.between(from = 1.00, to = 10.00).to_i, physical_activity: physical_activities.sample)
-Memory.create(user_id: User.all.sample.id, emotion_id: Emotion.last.id, thought_id: Thought.last.id, physical_id: Physical.last.id, activity_id: Activity.last.id)
-
-Emotion.create(feeling: primary_feeling_options.sample, secondary_feeling: secondary_feeling_options.sample, intensity: Faker::Number.between(from = 1.00, to = 10.00).to_i)
-Thought.create(category: thought_categories.sample, thought: Faker::Lorem.paragraph(sentence_count = 3, supplemental = false, random_sentences_to_add = 0))
-Activity.create(activity_category: activity_category.sample, activity_name: all_activities.sample, progress: true)
-Physical.create(stress_level: Faker::Number.between(from = 1.00, to = 10.00).to_i, physical_activity: physical_activities.sample)
-Memory.create(user_id: User.all.sample.id, emotion_id: Emotion.last.id, thought_id: Thought.last.id, physical_id: Physical.last.id, activity_id: Activity.last.id)
-
-Emotion.create(feeling: primary_feeling_options.sample, secondary_feeling: secondary_feeling_options.sample, intensity: Faker::Number.between(from = 1.00, to = 10.00).to_i)
-Thought.create(category: thought_categories.sample, thought: Faker::Lorem.paragraph(sentence_count = 3, supplemental = false, random_sentences_to_add = 0))
-Activity.create(activity_category: activity_category.sample, activity_name: all_activities.sample, progress: false)
-Physical.create(stress_level: Faker::Number.between(from = 1.00, to = 10.00).to_i, physical_activity: physical_activities.sample)
-Memory.create(user_id: User.all.sample.id, emotion_id: Emotion.last.id, thought_id: Thought.last.id, physical_id: Physical.last.id, activity_id: Activity.last.id)
-
-Emotion.create(feeling: primary_feeling_options.sample, secondary_feeling: secondary_feeling_options.sample, intensity: Faker::Number.between(from = 1.00, to = 10.00).to_i)
-Thought.create(category: thought_categories.sample, thought: Faker::Lorem.paragraph(sentence_count = 3, supplemental = false, random_sentences_to_add = 0))
-Activity.create(activity_category: activity_category.sample, activity_name: all_activities.sample, progress: false)
-Physical.create(stress_level: Faker::Number.between(from = 1.00, to = 10.00).to_i, physical_activity: physical_activities.sample)
-Memory.create(user_id: User.all.sample.id, emotion_id: Emotion.last.id, thought_id: Thought.last.id, physical_id: Physical.last.id, activity_id: Activity.last.id)
-
-Emotion.create(feeling: primary_feeling_options.sample, secondary_feeling: secondary_feeling_options.sample, intensity: Faker::Number.between(from = 1.00, to = 10.00).to_i)
-Thought.create(category: thought_categories.sample, thought: Faker::Lorem.paragraph(sentence_count = 3, supplemental = false, random_sentences_to_add = 0))
-Activity.create(activity_category: activity_category.sample, activity_name: all_activities.sample, progress: true)
-Physical.create(stress_level: Faker::Number.between(from = 1.00, to = 10.00).to_i, physical_activity: physical_activities.sample)
-Memory.create(user_id: User.all.sample.id, emotion_id: Emotion.last.id, thought_id: Thought.last.id, physical_id: Physical.last.id, activity_id: Activity.last.id)
-
-Emotion.create(feeling: primary_feeling_options.sample, secondary_feeling: secondary_feeling_options.sample, intensity: Faker::Number.between(from = 1.00, to = 10.00).to_i)
-Thought.create(category: thought_categories.sample, thought: Faker::Lorem.paragraph(sentence_count = 3, supplemental = false, random_sentences_to_add = 0))
-Activity.create(activity_category: activity_category.sample, activity_name: all_activities.sample, progress: false)
-Physical.create(stress_level: Faker::Number.between(from = 1.00, to = 10.00).to_i, physical_activity: physical_activities.sample)
-Memory.create(user_id: User.all.sample.id, emotion_id: Emotion.last.id, thought_id: Thought.last.id, physical_id: Physical.last.id, activity_id: Activity.last.id)
-
-Emotion.create(feeling: primary_feeling_options.sample, secondary_feeling: secondary_feeling_options.sample, intensity: Faker::Number.between(from = 1.00, to = 10.00).to_i)
-Thought.create(category: thought_categories.sample, thought: Faker::Lorem.paragraph(sentence_count = 3, supplemental = false, random_sentences_to_add = 0))
-Activity.create(activity_category: activity_category.sample, activity_name: all_activities.sample, progress: true)
-Physical.create(stress_level: Faker::Number.between(from = 1.00, to = 10.00).to_i, physical_activity: physical_activities.sample)
-Memory.create(user_id: User.all.sample.id, emotion_id: Emotion.last.id, thought_id: Thought.last.id, physical_id: Physical.last.id, activity_id: Activity.last.id)
-
-Emotion.create(feeling: primary_feeling_options.sample, secondary_feeling: secondary_feeling_options.sample, intensity: Faker::Number.between(from = 1.00, to = 10.00).to_i)
-Thought.create(category: thought_categories.sample, thought: Faker::Lorem.paragraph(sentence_count = 3, supplemental = false, random_sentences_to_add = 0))
-Activity.create(activity_category: activity_category.sample, activity_name: all_activities.sample, progress: true)
-Physical.create(stress_level: Faker::Number.between(from = 1.00, to = 10.00).to_i, physical_activity: physical_activities.sample)
-Memory.create(user_id: User.all.sample.id, emotion_id: Emotion.last.id, thought_id: Thought.last.id, physical_id: Physical.last.id, activity_id: Activity.last.id)
-
-Emotion.create(feeling: primary_feeling_options.sample, secondary_feeling: secondary_feeling_options.sample, intensity: Faker::Number.between(from = 1.00, to = 10.00).to_i)
-Thought.create(category: thought_categories.sample, thought: Faker::Lorem.paragraph(sentence_count = 3, supplemental = false, random_sentences_to_add = 0))
-Activity.create(activity_category: activity_category.sample, activity_name: all_activities.sample, progress: true)
-Physical.create(stress_level: Faker::Number.between(from = 1.00, to = 10.00).to_i, physical_activity: physical_activities.sample)
-Memory.create(user_id: User.all.sample.id, emotion_id: Emotion.last.id, thought_id: Thought.last.id, physical_id: Physical.last.id, activity_id: Activity.last.id)
-
-Emotion.create(feeling: primary_feeling_options.sample, secondary_feeling: secondary_feeling_options.sample, intensity: Faker::Number.between(from = 1.00, to = 10.00).to_i)
-Thought.create(category: thought_categories.sample, thought: Faker::Lorem.paragraph(sentence_count = 3, supplemental = false, random_sentences_to_add = 0))
-Activity.create(activity_category: activity_category.sample, activity_name: all_activities.sample, progress: true)
-Physical.create(stress_level: Faker::Number.between(from = 1.00, to = 10.00).to_i, physical_activity: physical_activities.sample)
-Memory.create(user_id: User.all.sample.id, emotion_id: Emotion.last.id, thought_id: Thought.last.id, physical_id: Physical.last.id, activity_id: Activity.last.id)

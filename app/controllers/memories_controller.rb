@@ -34,7 +34,7 @@ class MemoriesController < ApplicationController
   
     def memory_params
       # whitelist params
-      params.permit(:user_id, :emotion_id, :thought_id, :activity_id, :physical_id)
+      params.permit(:user_id)
     end
   
     def set_memory
