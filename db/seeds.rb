@@ -26,24 +26,26 @@ User.create(email: 'Vicky@test.com', username: 'vicky', first_name: 'Vicky', las
 User.create(email: 'Ian@test.com', username: 'ian', first_name: 'Ian', last_name: 'H', password: 'password')
 
 # Emotions
-# For feelings... try to organize by valence and relationship in a wheel basic out
+# For feelings... will organize by intensity wheel but assign valence and activation based on affect circumplex
+# Pull activation from charts
+# Pull valence from charts
 primary_emotions = ['joy', 'trust', 'fear', 'surprise', 'sadness', 'disgust', 'anger', 'anticipation']
 strong_emotions = ['ecstasy', 'admiration', 'terror', 'amazement', 'grief', 'loathing', 'rage', 'vigilance'] 
-mild_emotions = [] 
-
-
-feelings = primary_feeling_options + secondary_feeling_options
+mild_emotions = ['serenity', 'acceptance', 'apprehension', 'distraction', 'pensiveness', 'bordeom', 'annoyance', 'interest'] 
+combinatory_emotions = ['love', 'submission', 'awe', 'disapproval', 'remorse', 'contempt', 'aggressiveness', 'optimism']
+emotions = primary_emotions + strong_emotions + mild_emotions + combinatory_emotions
 
 #Thoughts
 time_orientation = ['Future', 'Past', 'Present']
-# Can create substriations of this based on valence!
 thought_type = ['Insightful', 'Experiential', 'Automatic']
+# There may be no need for thought as stand alone... though_category = []?
 
 # Activities
-activity_category = ['Personal','Work', 'Physical', 'Learn', 'Teach', 'Hobby', 'Other']
+activity_category = ['Entertainment','Work', 'Physical', 'Other']
 work_activities = ['Develop', 'Plan', 'Meeting', 'Design', 'Test', 'QA', 'Research']
-personal_activities = ['Clean', 'Cook', 'Shop', 'Eat', 'Drink', 'Play music', 'Listen to music', 'Read', 'Meditate']
+entertainment_activities = ['Clean', 'Cook', 'Shop', 'Eat', 'Drink', 'Play music', 'Listen to music', 'Read', 'Meditate']
 physical_activities = ['Lift weights', 'Walk', 'Run', 'Yoga', 'Swim', 'Dance', 'Sport - other', 'Other']
+# other_activities = []
 all_activities = work_activities + personal_activities + physical_activities
 
 # Physicals

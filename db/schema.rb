@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_14_185108) do
+ActiveRecord::Schema.define(version: 2019_05_14_212021) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,10 +19,10 @@ ActiveRecord::Schema.define(version: 2019_05_14_185108) do
     t.string "activity_category"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "activity"
   end
 
   create_table "activity_memories", force: :cascade do |t|
-    t.text "activity_name"
     t.text "activity_status"
     t.datetime "activity_start_time"
     t.datetime "activity_end_time"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 2019_05_14_185108) do
     t.bigint "memory_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "activity_description"
     t.index ["activity_id"], name: "index_activity_memories_on_activity_id"
     t.index ["memory_id"], name: "index_activity_memories_on_memory_id"
   end
@@ -42,15 +43,17 @@ ActiveRecord::Schema.define(version: 2019_05_14_185108) do
     t.bigint "memory_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "object"
     t.index ["emotion_id"], name: "index_emotion_memories_on_emotion_id"
     t.index ["memory_id"], name: "index_emotion_memories_on_memory_id"
   end
 
   create_table "emotions", force: :cascade do |t|
-    t.text "feeling"
+    t.text "emotion"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "valence"
+    t.integer "activation"
   end
 
   create_table "memories", force: :cascade do |t|
