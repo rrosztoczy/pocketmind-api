@@ -1,4 +1,4 @@
-class ActivityMemoriesController < ApplicationController
+class Api::V1::ActivityMemoriesController < ApplicationController
     before_action :set_activity_memory, only: [:show, :update, :destroy]
     
     # GET /activity_memories

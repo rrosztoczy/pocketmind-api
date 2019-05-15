@@ -1,4 +1,4 @@
-class MemoriesController < ApplicationController
+class Api::V1::MemoriesController < ApplicationController
     before_action :set_memory, only: [:show, :update, :destroy]
 
     # GET /memories
