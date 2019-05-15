@@ -24,6 +24,7 @@ User.create(email: 'Will@test.com', username: 'will', first_name: 'Will', last_n
 User.create(email: 'Steven@test.com', username: 'steven', first_name: 'Steven', last_name: 'B', password: 'password')
 User.create(email: 'Vicky@test.com', username: 'vicky', first_name: 'Vicky', last_name: 'H', password: 'password')
 User.create(email: 'Ian@test.com', username: 'ian', first_name: 'Ian', last_name: 'H', password: 'password')
+User.create(email: 'Ryan@test.com', username: 'ryan', first_name: 'Ryan', last_name: 'R', password: 'password')
 
 # Emotions
 # For feelings... will organize by intensity wheel but assign valence and activation based on affect circumplex
@@ -34,6 +35,7 @@ strong_emotions = ['ecstasy', 'admiration', 'terror', 'amazement', 'grief', 'loa
 mild_emotions = ['serenity', 'acceptance', 'apprehension', 'distraction', 'pensiveness', 'bordeom', 'annoyance', 'interest'] 
 combinatory_emotions = ['love', 'submission', 'awe', 'disapproval', 'remorse', 'contempt', 'aggressiveness', 'optimism']
 emotions = primary_emotions + strong_emotions + mild_emotions + combinatory_emotions
+
 
 #Thoughts
 time_orientation = ['Future', 'Past', 'Present']
@@ -56,7 +58,17 @@ stress_level = Faker::Number.number(10)
 # TODO: Comment out the create test ryan line after the first seed, see once 
 # TODO: Start to collect real data asap and use that
 # TODO: Have each emotion thought and activity use the last memory created id
-User.create(email: 'Ryan@test.com', username: 'ryan', first_name: 'Ryan', last_name: 'R', password: 'password')
+emotions.each {|emotion| Emotion.create(emotion: emotion)}
+User.all.each do |user|
+    20.times do 
+        Memory.create(user_id: user.id, stress_level: Faker::Number.number(10), anxiety_level: Faker::Number.number(10), default_stress_level_value: false, default_anxiety_level_value: false)
+        EmotionMemory.create(emotion_id: Faker::Number.number(emotion.length), memory_id: Memory.last.id, intensity: Faker::Number.number(10), pleasure: Faker::Number.number(10), default_intensity_value: false, default_pleasure_value: false)
+        ThoughtMemory.create(memory_id: Memory.last.id, )
+    end
+end
+
+
+
 # TOOD: Should memories have a category?
 
 

@@ -1,5 +1,5 @@
 class ThoughtMemoriesController < ApplicationController
-    before_action :set_thought_memories, only: [:show, :update, :destroy]
+    before_action :set_thought_memory, only: [:show, :update, :destroy]
     
     # GET /thought_memories
     def index
