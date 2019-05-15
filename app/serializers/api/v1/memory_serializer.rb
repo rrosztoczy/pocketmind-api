@@ -9,7 +9,7 @@ class Api::V1::MemorySerializer < ActiveModel::Serializer
     def thought_memories
       self.object.thought_memories.map do |thought_memory|
         {thoughtContent: thought_memory.thought_content,
-        object: thought_memory.object,
+        thoughtObject: thought_memory.thought_object,
         reason: thought_memory.reason}
       end
     end
