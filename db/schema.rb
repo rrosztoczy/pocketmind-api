@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_14_212021) do
+ActiveRecord::Schema.define(version: 2019_05_15_160633) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,12 +38,13 @@ ActiveRecord::Schema.define(version: 2019_05_14_212021) do
 
   create_table "emotion_memories", force: :cascade do |t|
     t.integer "intensity"
-    t.integer "stress_level"
     t.bigint "emotion_id"
     t.bigint "memory_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "object"
+    t.integer "pleasure"
+    t.boolean "default_intensity_value"
+    t.boolean "default_pleasure_value"
     t.index ["emotion_id"], name: "index_emotion_memories_on_emotion_id"
     t.index ["memory_id"], name: "index_emotion_memories_on_memory_id"
   end
@@ -54,12 +55,19 @@ ActiveRecord::Schema.define(version: 2019_05_14_212021) do
     t.datetime "updated_at", null: false
     t.integer "valence"
     t.integer "activation"
+    t.integer "scientific_valence"
+    t.integer "scientific_activation"
   end
 
   create_table "memories", force: :cascade do |t|
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "stress_level"
+    t.integer "anxiety_level"
+    t.boolean "default_stress_level_value"
+    t.boolean "default_anxiety_level_value"
+    t.datetime "time_of_memory"
     t.index ["user_id"], name: "index_memories_on_user_id"
   end
 
@@ -71,6 +79,10 @@ ActiveRecord::Schema.define(version: 2019_05_14_212021) do
     t.datetime "updated_at", null: false
     t.text "thought_type"
     t.text "time_orientation"
+    t.text "object"
+    t.text "reason"
+    t.text "automatic_thought"
+    t.text "rational_thought"
     t.index ["memory_id"], name: "index_thought_memories_on_memory_id"
     t.index ["thought_id"], name: "index_thought_memories_on_thought_id"
   end
