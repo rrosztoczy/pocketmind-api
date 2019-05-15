@@ -34,7 +34,7 @@ class EmotionMemoriesController < ApplicationController
   
     def emotion_memory_params
       # whitelist params
-      params.permit(:object, :intensity, :stress_level, :emotion_id, :memory_id)
+      params.permit(:intensity, :pleasure, :emotion_id, :memory_id, :default_intensity_value, :default_pleasure_value)
     end
   
     def set_emotion_memory
