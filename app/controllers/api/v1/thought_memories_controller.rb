@@ -1,4 +1,4 @@
-class ThoughtMemoriesController < ApplicationController
+class Api::V1::ThoughtMemoriesController < ApplicationController
     before_action :set_thought_memory, only: [:show, :update, :destroy]
     
     # GET /thought_memories
@@ -34,7 +34,7 @@ class ThoughtMemoriesController < ApplicationController
   
     def thought_memory_params
       # whitelist params
-      params.permit(:thought_content, :thought_type, :time_orientation, :object, :reason, :automatic_thought, :rational_thought, :thought_id, :memory_id)
+      params.permit(:thought_content, :thought_type, :time_orientation, :thought_object, :reason, :automatic_thought, :rational_thought, :thought_id, :memory_id)
     end
   
     def set_thought_memory

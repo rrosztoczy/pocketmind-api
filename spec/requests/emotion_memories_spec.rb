@@ -8,10 +8,10 @@ RSpec.describe 'EmotionsMemory API', type: :request do
 #   let!(:emotions) { create_list(:emotion, 10) }
   let(:emotion_memory_id) { EmotionMemory.first.id }
 
-  # Test suite for GET /emotion_memories
-  describe 'GET /emotion_memories' do
+  # Test suite for GET /api/v1/emotion_memories
+  describe 'GET /api/v1/emotion_memories' do
     # make HTTP get request before each example
-    before { get '/emotion_memories' }
+    before { get '/api/v1/emotion_memories' }
 
     it 'returns emotion_memories' do
       # Note `json` is a custom helper to parse JSON responses
@@ -23,9 +23,9 @@ RSpec.describe 'EmotionsMemory API', type: :request do
     end
   end
 
-  # Test suite for GET /emotion_memories/:id
-  describe 'GET /emotion_memories/:id' do
-    before { get "/emotion_memories/#{emotion_memory_id}" }
+  # Test suite for GET /api/v1/emotion_memories/:id
+  describe 'GET /api/v1/emotion_memories/:id' do
+    before { get "/api/v1/emotion_memories/#{emotion_memory_id}" }
 
     context 'when the record exists' do
       it 'returns the emotion' do
@@ -53,13 +53,13 @@ RSpec.describe 'EmotionsMemory API', type: :request do
 
   # 
 #   TODO:Do I need to come back to this and create the tables through emotions?
-# Test suite for POST /emotion_memories
-#   describe 'POST /emotion_memories' do
+# Test suite for POST /api/v1/emotion_memories
+#   describe 'POST /api/v1/emotion_memories' do
 #     # valid payload
 #     let(:valid_attributes) { { title: 'Learn Elm', created_by: '1' } }
 
 #     context 'when the request is valid' do
-#       before { post '/emotion_memories', params: valid_attributes }
+#       before { post '/api/v1/emotion_memories', params: valid_attributes }
 
 #       it 'creates a emotion' do
 #         expect(json['title']).to eq('Learn Elm')
@@ -71,7 +71,7 @@ RSpec.describe 'EmotionsMemory API', type: :request do
 #     end
 
 #     context 'when the request is invalid' do
-#       before { post '/emotion_memories', params: { title: 'Foobar' } }
+#       before { post '/api/v1/emotion_memories', params: { title: 'Foobar' } }
 
 #       it 'returns status code 422' do
 #         expect(response).to have_http_status(422)
@@ -84,12 +84,12 @@ RSpec.describe 'EmotionsMemory API', type: :request do
 #     end
 #   end
 
-#   # Test suite for PUT /emotion_memories/:id
-#   describe 'PUT /emotion_memories/:id' do
+#   # Test suite for PUT /api/v1/emotion_memories/:id
+#   describe 'PUT /api/v1/emotion_memories/:id' do
 #     let(:valid_attributes) { { title: 'Shopping' } }
 
 #     context 'when the record exists' do
-#       before { put "/emotion_memories/#{emotion_id}", params: valid_attributes }
+#       before { put "/api/v1/emotion_memories/#{emotion_id}", params: valid_attributes }
 
 #       it 'updates the record' do
 #         expect(response.body).to be_empty
@@ -101,9 +101,9 @@ RSpec.describe 'EmotionsMemory API', type: :request do
 #     end
 #   end
 
-  # Test suite for DELETE /emotion_memories/:id
-  describe 'DELETE /emotion_memories/:id' do
-    before { delete "/emotion_memories/#{emotion_memory_id}" }
+  # Test suite for DELETE /api/v1/emotion_memories/:id
+  describe 'DELETE /api/v1/emotion_memories/:id' do
+    before { delete "/api/v1/emotion_memories/#{emotion_memory_id}" }
 
     it 'returns status code 204' do
       expect(response).to have_http_status(204)

@@ -8,10 +8,10 @@ RSpec.describe 'ThoughtMemory API', type: :request do
 #   let!(:thoughts) { create_list(:thought, 10) }
   let(:thought_memory_id) { ThoughtMemory.first.id }
 
-  # Test suite for GET /thought_memories
-  describe 'GET /thought_memories' do
+  # Test suite for GET /api/v1/thought_memories
+  describe 'GET /api/v1/thought_memories' do
     # make HTTP get request before each example
-    before { get '/thought_memories' }
+    before { get '/api/v1/thought_memories' }
 
     it 'returns thought_memories' do
       # Note `json` is a custom helper to parse JSON responses
@@ -23,9 +23,9 @@ RSpec.describe 'ThoughtMemory API', type: :request do
     end
   end
 
-  # Test suite for GET /thought_memories/:id
-  describe 'GET /thought_memories/:id' do
-    before { get "/thought_memories/#{thought_memory_id}" }
+  # Test suite for GET /api/v1/thought_memories/:id
+  describe 'GET /api/v1/thought_memories/:id' do
+    before { get "/api/v1/thought_memories/#{thought_memory_id}" }
 
     context 'when the record exists' do
       it 'returns the thought' do
@@ -53,13 +53,13 @@ RSpec.describe 'ThoughtMemory API', type: :request do
 
   # 
 #   TODO:Do I need to come back to this and create the tables through thoughts?
-# Test suite for POST /thought_memories
-#   describe 'POST /thought_memories' do
+# Test suite for POST /api/v1/thought_memories
+#   describe 'POST /api/v1/thought_memories' do
 #     # valid payload
 #     let(:valid_attributes) { { title: 'Learn Elm', created_by: '1' } }
 
 #     context 'when the request is valid' do
-#       before { post '/thought_memories', params: valid_attributes }
+#       before { post '/api/v1/thought_memories', params: valid_attributes }
 
 #       it 'creates a thought' do
 #         expect(json['title']).to eq('Learn Elm')
@@ -71,7 +71,7 @@ RSpec.describe 'ThoughtMemory API', type: :request do
 #     end
 
 #     context 'when the request is invalid' do
-#       before { post '/thought_memories', params: { title: 'Foobar' } }
+#       before { post '/api/v1/thought_memories', params: { title: 'Foobar' } }
 
 #       it 'returns status code 422' do
 #         expect(response).to have_http_status(422)
@@ -84,12 +84,12 @@ RSpec.describe 'ThoughtMemory API', type: :request do
 #     end
 #   end
 
-#   # Test suite for PUT /thought_memories/:id
-#   describe 'PUT /thought_memories/:id' do
+#   # Test suite for PUT /api/v1/thought_memories/:id
+#   describe 'PUT /api/v1/thought_memories/:id' do
 #     let(:valid_attributes) { { title: 'Shopping' } }
 
 #     context 'when the record exists' do
-#       before { put "/thought_memories/#{thought_id}", params: valid_attributes }
+#       before { put "/api/v1/thought_memories/#{thought_id}", params: valid_attributes }
 
 #       it 'updates the record' do
 #         expect(response.body).to be_empty
@@ -101,9 +101,9 @@ RSpec.describe 'ThoughtMemory API', type: :request do
 #     end
 #   end
 
-  # Test suite for DELETE /thought_memories/:id
-  describe 'DELETE /thought_memories/:id' do
-    before { delete "/thought_memories/#{thought_memory_id}" }
+  # Test suite for DELETE /api/v1/thought_memories/:id
+  describe 'DELETE /api/v1/thought_memories/:id' do
+    before { delete "/api/v1/thought_memories/#{thought_memory_id}" }
 
     it 'returns status code 204' do
       expect(response).to have_http_status(204)

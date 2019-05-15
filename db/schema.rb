@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_15_160633) do
+ActiveRecord::Schema.define(version: 2019_05_15_181845) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,7 +79,7 @@ ActiveRecord::Schema.define(version: 2019_05_15_160633) do
     t.datetime "updated_at", null: false
     t.text "thought_type"
     t.text "time_orientation"
-    t.text "object"
+    t.text "thought_object"
     t.text "reason"
     t.text "automatic_thought"
     t.text "rational_thought"

@@ -1,4 +1,4 @@
-class EmotionMemoriesController < ApplicationController
+class Api::V1::EmotionMemoriesController < ApplicationController
     before_action :set_emotion_memory, only: [:show, :update, :destroy]
     
     # GET /emotion_memories

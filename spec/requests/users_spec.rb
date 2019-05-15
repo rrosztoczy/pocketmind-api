@@ -8,24 +8,24 @@ RSpec.describe 'Users API', type: :request do
 #   let!(:users) { create_list(:user, 10) }
   let(:user_id) { User.all.sample.id }
 
-  # Test suite for GET /users
-  describe 'GET /users' do
-    # make HTTP get request before each example
-    before { get '/users' }
+#   # Test suite for GET /api/v1/users
+#   describe 'GET /api/v1/users' do
+#     # make HTTP get request before each example
+#     before { get '/api/v1/users' }
 
-    it 'returns users' do
-      # Note `json` is a custom helper to parse JSON responses
-      expect(json).not_to be_empty
-    end
+#     it 'returns users' do
+#       # Note `json` is a custom helper to parse JSON responses
+#       expect(json).not_to be_empty
+#     end
 
-    it 'returns status code 200' do
-      expect(response).to have_http_status(200)
-    end
-  end
+#     it 'returns status code 200' do
+#       expect(response).to have_http_status(200)
+#     end
+#   end
 
-  # Test suite for GET /users/:id
-  describe 'GET /users/:id' do
-    before { get "/users/#{user_id}" }
+  # Test suite for GET /api/v1/users/:id
+  describe 'GET /api/v1/users/:id' do
+    before { get "/api/v1/users/#{user_id}" }
 
     context 'when the record exists' do
       it 'returns the user' do
@@ -39,7 +39,7 @@ RSpec.describe 'Users API', type: :request do
     end
 
     context 'when the record does not exist' do
-      let(:user_id) { 100 }
+      let(:user_id) { 1000 }
 
       it 'returns status code 404' do
         expect(response).to have_http_status(404)
@@ -53,13 +53,13 @@ RSpec.describe 'Users API', type: :request do
 
   # 
 #   TODO:Do I need to come back to this and create the tables through users?
-# Test suite for POST /users
-#   describe 'POST /users' do
+# Test suite for POST /api/v1/users
+#   describe 'POST /api/v1/users' do
 #     # valid payload
 #     let(:valid_attributes) { { title: 'Learn Elm', created_by: '1' } }
 
 #     context 'when the request is valid' do
-#       before { post '/users', params: valid_attributes }
+#       before { post '/api/v1/users', params: valid_attributes }
 
 #       it 'creates a user' do
 #         expect(json['title']).to eq('Learn Elm')
@@ -71,7 +71,7 @@ RSpec.describe 'Users API', type: :request do
 #     end
 
 #     context 'when the request is invalid' do
-#       before { post '/users', params: { title: 'Foobar' } }
+#       before { post '/api/v1/users', params: { title: 'Foobar' } }
 
 #       it 'returns status code 422' do
 #         expect(response).to have_http_status(422)
@@ -84,12 +84,12 @@ RSpec.describe 'Users API', type: :request do
 #     end
 #   end
 
-#   # Test suite for PUT /users/:id
-#   describe 'PUT /users/:id' do
+#   # Test suite for PUT /api/v1/users/:id
+#   describe 'PUT /api/v1/users/:id' do
 #     let(:valid_attributes) { { title: 'Shopping' } }
 
 #     context 'when the record exists' do
-#       before { put "/users/#{user_id}", params: valid_attributes }
+#       before { put "/api/v1/users/#{user_id}", params: valid_attributes }
 
 #       it 'updates the record' do
 #         expect(response.body).to be_empty
@@ -101,9 +101,9 @@ RSpec.describe 'Users API', type: :request do
 #     end
 #   end
 
-  # Test suite for DELETE /users/:id
-  describe 'DELETE /users/:id' do
-    before { delete "/users/#{user_id}" }
+  # Test suite for DELETE /api/v1/users/:id
+  describe 'DELETE /api/v1/users/:id' do
+    before { delete "/api/v1/users/#{user_id}" }
 
     it 'returns status code 204' do
       expect(response).to have_http_status(204)
