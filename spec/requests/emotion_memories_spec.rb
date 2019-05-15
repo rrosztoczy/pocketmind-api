@@ -39,7 +39,7 @@ RSpec.describe 'EmotionsMemory API', type: :request do
     end
 
     context 'when the record does not exist' do
-      let(:emotion_memory_id) { 100 }
+      let(:emotion_memory_id) { 10000 }
 
       it 'returns status code 404' do
         expect(response).to have_http_status(404)

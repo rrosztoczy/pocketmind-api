@@ -24,6 +24,7 @@ User.create(email: 'Will@test.com', username: 'will', first_name: 'Will', last_n
 User.create(email: 'Steven@test.com', username: 'steven', first_name: 'Steven', last_name: 'B', password: 'password')
 User.create(email: 'Vicky@test.com', username: 'vicky', first_name: 'Vicky', last_name: 'H', password: 'password')
 User.create(email: 'Ian@test.com', username: 'ian', first_name: 'Ian', last_name: 'H', password: 'password')
+User.create(email: 'Ryan@test.com', username: 'ryan', first_name: 'Ryan', last_name: 'R', password: 'password')
 
 # Emotions
 # For feelings... will organize by intensity wheel but assign valence and activation based on affect circumplex
@@ -35,33 +36,31 @@ mild_emotions = ['serenity', 'acceptance', 'apprehension', 'distraction', 'pensi
 combinatory_emotions = ['love', 'submission', 'awe', 'disapproval', 'remorse', 'contempt', 'aggressiveness', 'optimism']
 emotions = primary_emotions + strong_emotions + mild_emotions + combinatory_emotions
 
+
 #Thoughts
-time_orientation = ['Future', 'Past', 'Present']
-thought_type = ['Insightful', 'Experiential', 'Automatic']
+@time_orientation = ['Future', 'Past', 'Present']
+@thought_type = ['Insightful', 'Experiential', 'Automatic']
 # There may be no need for thought as stand alone... though_category = []?
 
-# Activities
-activity_category = ['Entertainment','Work', 'Physical', 'Other']
-work_activities = ['Develop', 'Plan', 'Meeting', 'Design', 'Test', 'QA', 'Research']
-entertainment_activities = ['Clean', 'Cook', 'Shop', 'Eat', 'Drink', 'Play music', 'Listen to music', 'Read', 'Meditate']
-physical_activities = ['Lift weights', 'Walk', 'Run', 'Yoga', 'Swim', 'Dance', 'Sport - other', 'Other']
-# other_activities = []
-all_activities = work_activities + personal_activities + physical_activities
+# # Activities
+# activity_category = ['Entertainment','Work', 'Physical', 'Other']
+# work_activities = ['Develop', 'Plan', 'Meeting', 'Design', 'Test', 'QA', 'Research']
+# entertainment_activities = ['Clean', 'Cook', 'Shop', 'Eat', 'Drink', 'Play music', 'Listen to music', 'Read', 'Meditate']
+# physical_activities = ['Lift weights', 'Walk', 'Run', 'Yoga', 'Swim', 'Dance', 'Sport - other', 'Other']
+# # other_activities = []
+# all_activities = work_activities + personal_activities + physical_activities
 
-# Physicals
-stress_level = Faker::Number.number(10)
+emotions.each {|emotion| Emotion.create(emotion: emotion)}
+User.all.each do |user|
+    20.times do 
+        Memory.create(user_id: user.id, stress_level: Faker::Number.between(0, 10), anxiety_level: Faker::Number.between(0, 10), default_stress_level_value: false, default_anxiety_level_value: false)
+        EmotionMemory.create(emotion_id: Faker::Number.between(1, Emotion.all.length-1), memory_id: Memory.last.id, intensity: Faker::Number.between(0, 10), pleasure: Faker::Number.between(0, 10), default_intensity_value: false, default_pleasure_value: false)
+        ThoughtMemory.create(memory_id: Memory.last.id, thought_content: Faker::Lorem.sentence(3, false, 4), thought_type: @thought_type.sample, time_orientation: @time_orientation.sample, object: User.all.sample.first_name, reason: Faker::Lorem.word, automatic_thought: Faker::Lorem.sentence(3, false, 4), rational_thought: Faker::Lorem.sentence(3, false, 4))
+    end
+end
 
 
 
-# TODO: Comment out the create test ryan line after the first seed, see once 
-# TODO: Start to collect real data asap and use that
-# TODO: Have each emotion thought and activity use the last memory created id
-User.create(email: 'Ryan@test.com', username: 'ryan', first_name: 'Ryan', last_name: 'R', password: 'password')
 # TOOD: Should memories have a category?
 
-
-Memory.create()
-Emotion.create(feeling: primary_feeling_options.sample, intensity: Faker::Number.between(from = 1.00, to = 10.00).to_i, valence: Faker::Number.between(from = -5.00, to = -5.00).to_i, stress_level: Faker::Number.between(from = -5.00, to = -5.00).to_i)
-Thought.create(thought_category: thought_categories.sample, thought: Faker::Lorem.paragraph(sentence_count = 3, supplemental = false, random_sentences_to_add = 0))
-Activity.create(activity_category: activity_category.sample, activity_name: all_activities.sample, status: 'In Progress')
 
