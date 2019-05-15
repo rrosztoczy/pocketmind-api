@@ -39,7 +39,7 @@ RSpec.describe 'ThoughtMemory API', type: :request do
     end
 
     context 'when the record does not exist' do
-      let(:thought_memory_id) { 100 }
+      let(:thought_memory_id) { 10000 }
 
       it 'returns status code 404' do
         expect(response).to have_http_status(404)

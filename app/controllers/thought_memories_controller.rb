@@ -9,13 +9,13 @@ class ThoughtMemoriesController < ApplicationController
   
     # POST /thought_memories... 
     def create
-      @thought_memories = ThoughtMemory.create!(thought_memory_params)
-      json_response(@thought_memories, :created)
+      @thought_memory = ThoughtMemory.create!(thought_memory_params)
+      json_response(@thought_memory, :created)
     end
   
     # GET /thought_memories/:id
     def show
-      json_response(@thought_memories)
+      json_response(@thought_memory)
     end
   
     # PATCH /thought_memories/:id .. 
