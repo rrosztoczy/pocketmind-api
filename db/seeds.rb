@@ -38,8 +38,8 @@ emotions = primary_emotions + strong_emotions + mild_emotions + combinatory_emot
 
 
 #Thoughts
-time_orientation = ['Future', 'Past', 'Present']
-thought_type = ['Insightful', 'Experiential', 'Automatic']
+@time_orientation = ['Future', 'Past', 'Present']
+@thought_type = ['Insightful', 'Experiential', 'Automatic']
 # There may be no need for thought as stand alone... though_category = []?
 
 # # Activities
@@ -55,7 +55,7 @@ User.all.each do |user|
     20.times do 
         Memory.create(user_id: user.id, stress_level: Faker::Number.between(0, 10), anxiety_level: Faker::Number.between(0, 10), default_stress_level_value: false, default_anxiety_level_value: false)
         EmotionMemory.create(emotion_id: Faker::Number.between(1, Emotion.all.length-1), memory_id: Memory.last.id, intensity: Faker::Number.between(0, 10), pleasure: Faker::Number.between(0, 10), default_intensity_value: false, default_pleasure_value: false)
-        ThoughtMemory.create(memory_id: Memory.last.id, thought_content: Faker::Lorem.sentence(3, false, 4), thought_type: thought_type.sample, time_orientation: time_orientation.sample, object: User.all.sample.first_name, reason: Faker::Lorem.word, automatic_thought: Faker::Lorem.sentence(3, false, 4), rational_thought: Faker::Lorem.sentence(3, false, 4))
+        ThoughtMemory.create(memory_id: Memory.last.id, thought_content: Faker::Lorem.sentence(3, false, 4), thought_type: @thought_type.sample, time_orientation: @time_orientation.sample, object: User.all.sample.first_name, reason: Faker::Lorem.word, automatic_thought: Faker::Lorem.sentence(3, false, 4), rational_thought: Faker::Lorem.sentence(3, false, 4))
     end
 end
 
