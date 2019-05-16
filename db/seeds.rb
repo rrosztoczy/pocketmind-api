@@ -49,9 +49,6 @@ emotions = primary_emotions + strong_emotions + mild_emotions + combinatory_emot
 # physical_activities = ['Lift weights', 'Walk', 'Run', 'Yoga', 'Swim', 'Dance', 'Sport - other', 'Other']
 # # other_activities = []
 # all_activities = work_activities + personal_activities + physical_activities
-Memory.create!(user_id: 1, stress_level: Faker::Number.between(0, 10), anxiety_level: Faker::Number.between(0, 10), default_stress_level_value: false, default_anxiety_level_value: false)
-Memory.create!(user_id: 1, stress_level: Faker::Number.between(0, 10), anxiety_level: Faker::Number.between(0, 10), default_stress_level_value: false, default_anxiety_level_value: false)
-puts "#{Memory.all.length}"
 
 emotions.each {|emotion| Emotion.create(emotion: emotion)}
 User.all.each do |user|
