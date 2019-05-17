@@ -9,7 +9,7 @@ class Api::V1::MemoriesController < ApplicationController
   
     # POST /memories... TODO: Probably don't need this... instead create after other data created
     def create
-      @memory = Memory.create!(memory_params)
+      @memory = Memory.create(memory_params)
       json_response(@memory, :created)
     end
   
@@ -34,7 +34,9 @@ class Api::V1::MemoriesController < ApplicationController
   
     def memory_params
       # whitelist params
-      params.permit(:user_id, :stress_level, :anxiety_level, :time_of_memory, :default_anxiety_level_value, :default_stress_level_value)
+      # TODO: Comne back to this... recieving memory params + the memory again as hash... might be that initializer I amde
+      # TODO:Need to add user id on creation
+      params.require(:memory).permit(:user_id, :stress_level, :anxiety_level, :time_of_memory, :default_anxiety_level_value, :default_stress_level_value)
     end
   
     def set_memory
