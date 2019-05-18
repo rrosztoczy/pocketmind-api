@@ -1,5 +1,5 @@
 class Api::V1::MemorySerializer < ActiveModel::Serializer
-  attributes :id, :user, :thought_memories, :emotion_memories , :stress_level, :anxiety_level, :created_at, :time_of_memory
+  attributes :id, :user, :thoughtMemories, :emotionMemories , :stressLevel, :anxietyLevel, :createdAt, :timeOfMemory
     # belongs_to :user
     # has_many :emotion_memories
     # has_many :thought_memories
@@ -10,7 +10,7 @@ class Api::V1::MemorySerializer < ActiveModel::Serializer
       lastName: self.object.user.last_name}
     end
 
-    def thought_memories
+    def thoughtMemories
       self.object.thought_memories.map do |thought_memory|
         {thoughtContent: thought_memory.thought_content,
         thoughtObject: thought_memory.thought_object,
@@ -18,11 +18,27 @@ class Api::V1::MemorySerializer < ActiveModel::Serializer
       end
     end
 
-    def emotion_memories
+    def emotionMemories
       self.object.emotion_memories.map do |emotion_memory|
         {emotion: emotion_memory.emotion.emotion,
         intensity: emotion_memory.intensity,
         pleasure: emotion_memory.pleasure}
       end
+    end
+
+    def stressLevel
+      object.stress_level
+    end
+
+    def anxietyLevel 
+      object.anxiety_level
+    end
+
+    def createdAt
+      object.created_at
+    end
+
+    def timeOfMemory
+      object.time_of_memory
     end
 end
