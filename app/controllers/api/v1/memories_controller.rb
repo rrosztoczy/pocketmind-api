@@ -36,7 +36,7 @@ class Api::V1::MemoriesController < ApplicationController
       # whitelist params
       # TODO: Comne back to this... recieving memory params + the memory again as hash... might be that initializer I amde
       # TODO:Need to add user id on creation
-      params.require(:memory).permit(:user_id, :stress_level, :anxiety_level, :time_of_memory, :default_anxiety_level_value, :default_stress_level_value, emotion_memory_attributes: [:id, :emotion, :intensity, :pleasure], thought_memory_attributes: [:id, :thoughtContent, :thoughtObject, :thoughtReason])
+      params.require(:memory).permit(:user_id, :stress_level, :anxiety_level, :time_of_memory, :default_anxiety_level_value, :default_stress_level_value, emotion_memories_attributes: [:id, :emotion, :intensity, :pleasure], thought_memories_attributes: [:id, :thought_content, :thought_object, :thought_reason])
     end
   
     def set_memory
