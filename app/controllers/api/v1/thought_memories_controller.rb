@@ -21,7 +21,7 @@ class Api::V1::ThoughtMemoriesController < ApplicationController
     # PATCH /thought_memories/:id .. 
     def update
       @thought_memory.update(thought_memory_params)
-      head :no_content
+      json_response(@thought_memory)
     end
   
     # DELETE /thought_memories/:id
