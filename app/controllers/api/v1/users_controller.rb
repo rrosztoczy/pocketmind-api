@@ -7,10 +7,19 @@ class Api::V1::UsersController < ApplicationController
           json_response(@users)
         end
       
-        # POST /users... 
+        # # POST /users... 
+        # def create
+        #   @user = User.create!(user_params)
+        #   json_response(@user, :created)
+        # end
+
         def create
-          @user = User.create!(user_params)
-          json_response(@user, :created)
+          @user = User.create(user_params)
+          if @user.valid?
+            render json: { user: UserSerializer.new(@user) }, status: :created
+          else
+            render json: { error: 'failed to create user' }, status: :not_acceptable
+          end
         end
       
         # GET /users/:id
@@ -34,7 +43,7 @@ class Api::V1::UsersController < ApplicationController
       
         def user_params
           # whitelist params
-          params.permit(:email, :username, :first_name, :last_name, :password)
+          params.require(:user).permit(:email, :username, :first_name, :last_name, :password)
         end
       
         def set_user
