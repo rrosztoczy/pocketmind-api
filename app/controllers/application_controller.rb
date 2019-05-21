@@ -2,6 +2,7 @@ class ApplicationController < ActionController::API
     include Response
     include ExceptionHandler
     before_action :authorized
+    # helper_method :current_user
 
     def encode_token(payload)
         JWT.encode(payload, ENV["jwt_secret"])
@@ -14,6 +15,7 @@ class ApplicationController < ActionController::API
 
     def decoded_token
         if auth_header
+            # puts `in auth header`
             token = auth_header.split(' ')[1]
             begin
                 JWT.decode(token, ENV["jwt_secret"], true, algorithm: 'HS256')
@@ -27,6 +29,7 @@ class ApplicationController < ActionController::API
         if decoded_token
           user_id = decoded_token[0]['user_id']
           @user = User.find_by(id: user_id)
+        #   puts "found user #{user_id}"
         end
       end
     
