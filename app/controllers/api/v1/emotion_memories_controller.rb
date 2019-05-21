@@ -21,7 +21,7 @@ class Api::V1::EmotionMemoriesController < ApplicationController
     # PATCH /emotion_memories/:id .. 
     def update
       @emotion_memory.update(emotion_memory_params)
-      head :no_content
+      json_response(@emotion_memory)
     end
   
     # DELETE /emotion_memories/:id
