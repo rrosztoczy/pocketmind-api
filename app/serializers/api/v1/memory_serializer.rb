@@ -16,6 +16,7 @@ class Api::V1::MemorySerializer < ActiveModel::Serializer
         memoryId: thought_memory.memory_id,
         createdAt: thought_memory.created_at,
         thoughtContent: thought_memory.thought_content,
+        thoughtType: thought_memory.thought_type,
         thoughtObject: thought_memory.thought_object,
         timeOrientation: thought_memory.time_orientation,
         reason: thought_memory.reason}
