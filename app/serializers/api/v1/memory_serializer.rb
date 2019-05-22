@@ -12,15 +12,23 @@ class Api::V1::MemorySerializer < ActiveModel::Serializer
 
     def thoughtMemories
       self.object.thought_memories.map do |thought_memory|
-        {thoughtContent: thought_memory.thought_content,
+        {id: thought_memory.id,
+        memoryId: thought_memory.memory_id,
+        createdAt: thought_memory.created_at,
+        thoughtContent: thought_memory.thought_content,
+        thoughtType: thought_memory.thought_type,
         thoughtObject: thought_memory.thought_object,
+        timeOrientation: thought_memory.time_orientation,
         reason: thought_memory.reason}
       end
     end
 
     def emotionMemories
       self.object.emotion_memories.map do |emotion_memory|
-        {emotion: emotion_memory.emotion.emotion,
+        {id: emotion_memory.id,
+        memoryId: emotion_memory.memory_id,
+        createdAt: emotion_memory.created_at,
+        emotion: emotion_memory.emotion.emotion,
         intensity: emotion_memory.intensity,
         pleasure: emotion_memory.pleasure}
       end
