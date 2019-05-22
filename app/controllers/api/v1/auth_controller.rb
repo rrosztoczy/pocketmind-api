@@ -6,9 +6,10 @@ class Api::V1::AuthController < ApplicationController
       if @user && @user.authenticate(user_login_params[:password])
         puts 'authed!'
         token = encode_token({ user_id: @user.id })
-        render json: { user: Api::V1::UserSerializer.new(@user), jwt: token }, status: :accepted
+        puts "#{token}"
+        render json: {email: @user.email, jwt: token } , status: :accepted
       else
-        puts 'not authed!'
+          puts 'not authed!'
         render json: { message: 'Invalid username or password' }, status: :unauthorized
       end
     end
