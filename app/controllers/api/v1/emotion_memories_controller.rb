@@ -34,7 +34,7 @@ class Api::V1::EmotionMemoriesController < ApplicationController
   
     def emotion_memory_params
       # whitelist params
-      params.permit(:intensity, :pleasure, :emotion_id, :memory_id, :default_intensity_value, :default_pleasure_value)
+      params.permit(:created_at, :intensity, :pleasure, :stress_level, :anxiety_level, :emotion_id, :memory_id, :default_intensity_value, :default_pleasure_value)
     end
   
     def set_emotion_memory

@@ -34,7 +34,7 @@ class Api::V1::ThoughtMemoriesController < ApplicationController
   
     def thought_memory_params
       # whitelist params
-      params.permit(:thought_content, :thought_type, :time_orientation, :thought_object, :reason, :automatic_thought, :rational_thought, :thought_id, :memory_id)
+      params.permit(:thought_content, :thought_type, :time_orientation, :topic, :automatic_thought, :rational_thought, :cognitive_bias, :thought_id, :memory_id)
     end
   
     def set_thought_memory

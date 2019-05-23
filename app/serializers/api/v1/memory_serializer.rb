@@ -1,5 +1,5 @@
 class Api::V1::MemorySerializer < ActiveModel::Serializer
-  attributes :id, :user, :thoughtMemories, :emotionMemories , :stressLevel, :anxietyLevel, :createdAt, :timeOfMemory
+  attributes :id, :user, :thoughtMemories, :emotionMemories , :createdAt, :timeOfMemory
     # belongs_to :user
     # has_many :emotion_memories
     # has_many :thought_memories
@@ -17,9 +17,10 @@ class Api::V1::MemorySerializer < ActiveModel::Serializer
         createdAt: thought_memory.created_at,
         thoughtContent: thought_memory.thought_content,
         thoughtType: thought_memory.thought_type,
-        thoughtObject: thought_memory.thought_object,
+        automaticThought: thought_memory.automatic_thought,
+        rationalThought: thought_memory.rational_thought,
         timeOrientation: thought_memory.time_orientation,
-        reason: thought_memory.reason}
+        topic: thought_memory.topic}
       end
     end
 
@@ -30,16 +31,10 @@ class Api::V1::MemorySerializer < ActiveModel::Serializer
         createdAt: emotion_memory.created_at,
         emotion: emotion_memory.emotion.emotion,
         intensity: emotion_memory.intensity,
-        pleasure: emotion_memory.pleasure}
+        pleasure: emotion_memory.pleasure,
+        stressLevel: emotion_memory.stress_level,
+        anxietyLevel: emotion_memory.anxiety_level}
       end
-    end
-
-    def stressLevel
-      object.stress_level
-    end
-
-    def anxietyLevel 
-      object.anxiety_level
     end
 
     def createdAt

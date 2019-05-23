@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_21_142729) do
+ActiveRecord::Schema.define(version: 2019_05_23_210052) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,8 @@ ActiveRecord::Schema.define(version: 2019_05_21_142729) do
     t.integer "pleasure"
     t.boolean "default_intensity_value"
     t.boolean "default_pleasure_value"
+    t.integer "stress_level"
+    t.integer "anxiety_level"
     t.index ["emotion_id"], name: "index_emotion_memories_on_emotion_id"
     t.index ["memory_id"], name: "index_emotion_memories_on_memory_id"
   end
@@ -63,8 +65,6 @@ ActiveRecord::Schema.define(version: 2019_05_21_142729) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "stress_level"
-    t.integer "anxiety_level"
     t.boolean "default_stress_level_value"
     t.boolean "default_anxiety_level_value"
     t.datetime "time_of_memory"
@@ -80,9 +80,10 @@ ActiveRecord::Schema.define(version: 2019_05_21_142729) do
     t.text "thought_type"
     t.text "time_orientation"
     t.text "thought_object"
-    t.text "reason"
+    t.text "topic"
     t.text "automatic_thought"
     t.text "rational_thought"
+    t.text "cognitive_bias"
     t.index ["memory_id"], name: "index_thought_memories_on_memory_id"
     t.index ["thought_id"], name: "index_thought_memories_on_thought_id"
   end
