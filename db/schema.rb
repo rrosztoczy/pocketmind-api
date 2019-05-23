@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_23_161228) do
+ActiveRecord::Schema.define(version: 2019_05_23_162919) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,8 @@ ActiveRecord::Schema.define(version: 2019_05_23_161228) do
     t.integer "pleasure"
     t.boolean "default_intensity_value"
     t.boolean "default_pleasure_value"
+    t.integer "stress_level"
+    t.integer "anxiety_level"
     t.index ["emotion_id"], name: "index_emotion_memories_on_emotion_id"
     t.index ["memory_id"], name: "index_emotion_memories_on_memory_id"
   end
@@ -57,8 +59,6 @@ ActiveRecord::Schema.define(version: 2019_05_23_161228) do
     t.integer "activation"
     t.integer "scientific_valence"
     t.integer "scientific_activation"
-    t.integer "stress_level"
-    t.integer "anxiety_level"
   end
 
   create_table "memories", force: :cascade do |t|
