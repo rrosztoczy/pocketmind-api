@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_21_142729) do
+ActiveRecord::Schema.define(version: 2019_05_23_161228) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,14 +57,14 @@ ActiveRecord::Schema.define(version: 2019_05_21_142729) do
     t.integer "activation"
     t.integer "scientific_valence"
     t.integer "scientific_activation"
+    t.integer "stress_level"
+    t.integer "anxiety_level"
   end
 
   create_table "memories", force: :cascade do |t|
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "stress_level"
-    t.integer "anxiety_level"
     t.boolean "default_stress_level_value"
     t.boolean "default_anxiety_level_value"
     t.datetime "time_of_memory"
