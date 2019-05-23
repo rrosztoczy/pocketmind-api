@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_23_162919) do
+ActiveRecord::Schema.define(version: 2019_05_23_210052) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,9 +80,10 @@ ActiveRecord::Schema.define(version: 2019_05_23_162919) do
     t.text "thought_type"
     t.text "time_orientation"
     t.text "thought_object"
-    t.text "reason"
+    t.text "topic"
     t.text "automatic_thought"
     t.text "rational_thought"
+    t.text "cognitive_bias"
     t.index ["memory_id"], name: "index_thought_memories_on_memory_id"
     t.index ["thought_id"], name: "index_thought_memories_on_thought_id"
   end
