@@ -34,7 +34,7 @@ class Api::V1::MemoriesController < ApplicationController
   
     def memory_params
       # whitelist params
-      params.require(:memory).permit(:id, :created_at, :user_id, :time_of_memory, emotion_memories_attributes: [:id, :emotion_id, :intensity, :pleasure, :stress_level, :anxiety_level], thought_memories_attributes: [:id, :thought_content, :thought_object, :reason]).merge(user_id: current_user.id)
+      params.require(:memory).permit(:id, :created_at, :user_id, :time_of_memory, emotion_memories_attributes: [:id, :emotion_id, :intensity, :pleasure, :stress_level, :anxiety_level], thought_memories_attributes: [:id, :thought_content, :thought_type, :topic, :automatic_thought, :cognitive_bias, :rational_thought]).merge(user_id: current_user.id)
     end
   
     def set_memory

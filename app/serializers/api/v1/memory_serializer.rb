@@ -18,6 +18,7 @@ class Api::V1::MemorySerializer < ActiveModel::Serializer
         thoughtContent: thought_memory.thought_content,
         thoughtType: thought_memory.thought_type,
         automaticThought: thought_memory.automatic_thought,
+        cognitiveBias: thought_memory.cognitive_bias,
         rationalThought: thought_memory.rational_thought,
         timeOrientation: thought_memory.time_orientation,
         topic: thought_memory.topic}
