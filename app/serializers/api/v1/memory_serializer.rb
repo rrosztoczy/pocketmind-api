@@ -1,5 +1,5 @@
 class Api::V1::MemorySerializer < ActiveModel::Serializer
-  attributes :id, :user, :thoughtMemories, :emotionMemories , :createdAt, :timeOfMemory
+  attributes :id, :user, :activity_memories, :thoughtMemories, :emotionMemories , :createdAt, :timeOfMemory
     # belongs_to :user
     # has_many :emotion_memories
     # has_many :thought_memories
@@ -35,6 +35,21 @@ class Api::V1::MemorySerializer < ActiveModel::Serializer
         pleasure: emotion_memory.pleasure,
         stressLevel: emotion_memory.stress_level,
         anxietyLevel: emotion_memory.anxiety_level}
+      end
+    end
+
+    def activityMemories
+      self.object.activity_memories.map do |activity_memory|
+        {id: activity_memory.id,
+        memoryId: activity_memory.memory_id,
+        createdAt: activity_memory.created_at,
+        activityType: activity_memory.activity_type,
+        activityName: activity_memory.activity_name,
+        activityDescription: activity_memory.activity_description,
+        activityStatus: activity_memory.activity_status,
+        activityStartTime: activity_memory.activity_start_time,
+        activityEndTime: activity_memory.activity_end_time,
+      }
       end
     end
 
