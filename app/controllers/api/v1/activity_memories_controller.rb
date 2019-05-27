@@ -9,7 +9,7 @@ class Api::V1::ActivityMemoriesController < ApplicationController
   
     # POST /activity_memories... 
     def create
-      @activity_memory = ActivityMemory.create!(activity_memory_params)
+      @activity_memory = ActivityMemory.create(!activity_memory_params)
       json_response(@activity_memory, :created)
     end
   
@@ -34,7 +34,7 @@ class Api::V1::ActivityMemoriesController < ApplicationController
   
     def activity_memory_params
       # whitelist params
-      params.permit(:activity_status, :activity_start_time, :activity_end_time, :activity_source, :activity_description, :activity_id, :memory_id)
+      params.permit(:activity_status, :activity_start_time, :activity_end_time, :activity_source, :activity_name, :activity_description, :activity_id, :memory_id)
     end
   
     def set_activity
