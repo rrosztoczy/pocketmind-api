@@ -9,7 +9,6 @@ class Api::V1::UsersController < ApplicationController
         end
 
         def profile
-          # where's the auth??????????
           render json: current_user, status: :accepted
         end
       

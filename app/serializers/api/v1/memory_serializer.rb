@@ -1,8 +1,5 @@
 class Api::V1::MemorySerializer < ActiveModel::Serializer
   attributes :id, :user, :activityMemories, :thoughtMemories, :emotionMemories , :createdAt, :timeOfMemory
-    # belongs_to :user
-    # has_many :emotion_memories
-    # has_many :thought_memories
   
     def user
       {userId: self.object.user.id,
